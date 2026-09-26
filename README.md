@@ -4,7 +4,7 @@ A GNOME Shell window-tiling extension based on [Tactile](https://gitlab.com/lund
 
 ## Shortcuts
 
-- **Super+G** cycles the active window through the left, center, and right thirds of its monitor's work area, then wraps to the left.
+- **Super+G** cycles the active window back and forth through the left, center, and right thirds of its monitor's work area.
 - **Super+F** cycles the active window between the left two-thirds and right two-thirds of its monitor's work area.
 
 Both shortcuts can be changed in the extension preferences. The work area excludes GNOME panels and reserved desktop space. Slot widths are calculated to cover the work area without rounding gaps.

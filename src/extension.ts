@@ -56,9 +56,10 @@ export default class TriSlotExtension extends Extension {
 
         const workArea = getWorkAreaForMonitor(window.get_monitor());
         const positions = this._positions.get(window) ?? { thirds: -1, twoThirds: -1 };
-        const slotCount = mode === "thirds" ? 3 : 2;
-        const slot = (positions[mode] + 1) % slotCount;
-        positions[mode] = slot;
+        const cycleLength = mode === "thirds" ? 4 : 2;
+        const cyclePosition = (positions[mode] + 1) % cycleLength;
+        const slot = mode === "thirds" ? [0, 1, 2, 1][cyclePosition] : cyclePosition;
+        positions[mode] = cyclePosition;
         this._positions.set(window, positions);
 
         let left: number;
