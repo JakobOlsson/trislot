@@ -1,0 +1,6 @@
+/.idea
+/.venv
+/build
+/node_modules
+*.compiled
+*.zip

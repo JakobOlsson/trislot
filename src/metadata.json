@@ -1,0 +1,8 @@
+{
+  "uuid": "trislot@local",
+  "name": "TriSlot",
+  "description": "Cycle the active window through one-third- or two-thirds-width screen slots with configurable keyboard shortcuts.",
+  "settings-schema": "org.gnome.shell.extensions.trislot",
+  "version": 1,
+  "shell-version": ["45", "46", "47", "48", "49", "50", "51"]
+}
