@@ -13,7 +13,7 @@ import {
     isEntireWorkAreaWidth,
 } from "./extension/utils.js";
 
-type CyclePositions = { thirds: number; twoThirds: number };
+type CyclePositions = { thirds: number; twoThirds: number; halves: number };
 
 export default class TriSlotExtension extends Extension {
     _settings?: Gio.Settings;
@@ -24,12 +24,14 @@ export default class TriSlotExtension extends Extension {
         this._settings = this.getSettings();
         this.bindKey("cycle-thirds", () => this.cycleWindow("thirds"));
         this.bindKey("cycle-two-thirds", () => this.cycleWindow("twoThirds"));
+        this.bindKey("cycle-halves", () => this.cycleWindow("halves"));
     }
 
     disable(): void {
         this.removeSources();
         this.unbindKey("cycle-thirds");
         this.unbindKey("cycle-two-thirds");
+        this.unbindKey("cycle-halves");
         this._positions = new WeakMap();
         this._settings = undefined;
     }
@@ -55,7 +57,7 @@ export default class TriSlotExtension extends Extension {
         }
 
         const workArea = getWorkAreaForMonitor(window.get_monitor());
-        const positions = this._positions.get(window) ?? { thirds: -1, twoThirds: -1 };
+        const positions = this._positions.get(window) ?? { thirds: -1, twoThirds: -1, halves: -1 };
         const cycleLength = mode === "thirds" ? 4 : 2;
         const cyclePosition = (positions[mode] + 1) % cycleLength;
         const slot = mode === "thirds" ? [0, 1, 2, 1][cyclePosition] : cyclePosition;
@@ -67,12 +69,15 @@ export default class TriSlotExtension extends Extension {
         if (mode === "thirds") {
             left = Math.floor((workArea.width * slot) / 3);
             right = Math.floor((workArea.width * (slot + 1)) / 3);
-        } else if (slot === 0) {
+        } else if (mode === "twoThirds" && slot === 0) {
             left = 0;
             right = Math.floor((workArea.width * 2) / 3);
-        } else {
+        } else if (mode === "twoThirds") {
             left = Math.floor(workArea.width / 3);
             right = workArea.width;
+        } else {
+            left = Math.floor((workArea.width * slot) / 2);
+            right = Math.floor((workArea.width * (slot + 1)) / 2);
         }
 
         this.moveWindow(window, new Area(workArea.x + left, workArea.y, right - left, workArea.height));

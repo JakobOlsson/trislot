@@ -2,12 +2,16 @@
 <schemalist>
     <schema id="org.gnome.shell.extensions.trislot" path="/org/gnome/shell/extensions/trislot/">
         <key name="cycle-thirds" type="as">
-            <default><![CDATA[['<Super>g']]]></default>
+            <default><![CDATA[['<Super>d']]]></default>
             <summary>Cycle window through one-third-width slots</summary>
         </key>
         <key name="cycle-two-thirds" type="as">
             <default><![CDATA[['<Super>f']]]></default>
             <summary>Cycle window through two-thirds-width slots</summary>
+        </key>
+        <key name="cycle-halves" type="as">
+            <default><![CDATA[['<Super>g']]]></default>
+            <summary>Cycle window through half-width slots</summary>
         </key>
     </schema>
 </schemalist>

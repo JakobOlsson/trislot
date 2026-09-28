@@ -8,6 +8,7 @@ import { createAcceleratorInput } from "../inputs/accelerator.js";
 const SHORTCUTS = [
     { id: "cycle-thirds", description: "Cycle through 1/3-width slots" },
     { id: "cycle-two-thirds", description: "Cycle through 2/3-width slots" },
+    { id: "cycle-halves", description: "Cycle through 1/2-width slots" },
 ];
 
 export const KeyboardShortcutsPage = GObject.registerClass(
