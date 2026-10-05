@@ -11,7 +11,7 @@
         </key>
         <key name="cycle-halves" type="as">
             <default><![CDATA[['<Super>g']]]></default>
-            <summary>Cycle window through half-width slots</summary>
+            <summary>Center window at three-fifths width</summary>
         </key>
     </schema>
 </schemalist>
