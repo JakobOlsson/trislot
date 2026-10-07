@@ -6,12 +6,7 @@ import * as Main from "resource:///org/gnome/shell/ui/main.js";
 import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 
 import { Area } from "./common/area.js";
-import {
-    getActiveWindow,
-    getWorkAreaForMonitor,
-    isEntireWorkAreaHeight,
-    isEntireWorkAreaWidth,
-} from "./extension/utils.js";
+import { getActiveWindow, getWorkAreaForMonitor } from "./extension/utils.js";
 
 type CyclePositions = { thirds: number; twoThirds: number };
 
@@ -99,18 +94,6 @@ export default class TriSlotExtension extends Extension {
             }
 
             window.move_resize_frame(true, area.x, area.y, area.width, area.height);
-
-            if (isEntireWorkAreaWidth(area)) {
-                window.set_maximize_flags(Meta.MaximizeFlags.HORIZONTAL);
-            } else {
-                window.set_unmaximize_flags(Meta.MaximizeFlags.HORIZONTAL);
-            }
-
-            if (isEntireWorkAreaHeight(area)) {
-                window.set_maximize_flags(Meta.MaximizeFlags.VERTICAL);
-            } else {
-                window.set_unmaximize_flags(Meta.MaximizeFlags.VERTICAL);
-            }
         } else {
             const legacyWindow: {
                 get_maximized(): boolean;
@@ -130,18 +113,6 @@ export default class TriSlotExtension extends Extension {
             }
 
             legacyWindow.move_resize_frame(true, area.x, area.y, area.width, area.height);
-
-            if (isEntireWorkAreaWidth(area)) {
-                legacyWindow.maximize(Meta.MaximizeFlags.HORIZONTAL);
-            } else {
-                legacyWindow.unmaximize(Meta.MaximizeFlags.HORIZONTAL);
-            }
-
-            if (isEntireWorkAreaHeight(area)) {
-                legacyWindow.maximize(Meta.MaximizeFlags.VERTICAL);
-            } else {
-                legacyWindow.unmaximize(Meta.MaximizeFlags.VERTICAL);
-            }
         }
 
         let attempts = 1;
